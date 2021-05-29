@@ -98,8 +98,7 @@ def makeSVG(data):
         currentStatus = "Recently Listened to:"
         artistName = 'N/A'
         songName = 'Not Listening'
-        item = []
-        item["album"]["images"] = []
+        notPlaying = 1
         # recentPlays = recentlyPlayed()
         # recentPlaysLength = len(recentPlays["items"])
         # itemIndex = random.randint(0, recentPlaysLength - 1)
@@ -107,14 +106,17 @@ def makeSVG(data):
     else:
         item = data["item"]
         currentStatus = "Currently Playing:"
-    
-    if item["album"]["images"] == []:
+
+    if notPlaying == 1:
+        image = PLACEHOLDER_IMAGE
+    elif item["album"]["images"] == []:
         image = PLACEHOLDER_IMAGE
     else : 
         image = loadImageB64(item["album"]["images"][1]["url"])
 
-    artistName = item["artists"][0]["name"].replace("&", "&amp;")
-    songName = item["name"].replace("&", "&amp;")
+    if notPlaying != 1:
+        artistName = item["artists"][0]["name"].replace("&", "&amp;")
+        songName = item["name"].replace("&", "&amp;")
 
     dataDict = {
         "contentBar": contentBar,
