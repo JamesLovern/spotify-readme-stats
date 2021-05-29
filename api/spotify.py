@@ -98,6 +98,8 @@ def makeSVG(data):
         currentStatus = "Recently Listened to:"
         artistName = 'N/A'
         songName = 'Not Listening'
+        item = []
+        item["album"]["images"] = []
         # recentPlays = recentlyPlayed()
         # recentPlaysLength = len(recentPlays["items"])
         # itemIndex = random.randint(0, recentPlaysLength - 1)
